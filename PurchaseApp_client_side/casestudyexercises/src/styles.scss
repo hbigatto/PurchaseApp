@@ -1,0 +1,91 @@
+// custom theme
+@import "custom-theme.scss";
+.my-primary-text {
+color: mat-color($my-app-primary);
+}
+.my-accent-text {
+color: mat-color($my-app-accent);
+}
+.margin-right-2 {
+margin-right: 2vw !important;
+}
+
+mat-list-item:nth-child(odd){
+    background-color:white;
+}
+    mat-list-item:nth-child(even) {
+    background-color:#eeeeee;
+}
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    height:110px; 
+    width: 110px;
+}
+
+.padtop15 {
+    padding-top: 15vh;
+}
+.material-icons.addicon {
+    font-size: 15vw;
+    position: absolute;
+    bottom: 5vh;
+    right: 5vw;
+    padding: 10vw;
+}
+
+mat-error { text-align: right ;}
+mat-form-field { margin-left:5%;width:90% }
+
+table {
+    width: 100%;
+}
+.center-header{
+    flex-direction: column;
+    justify-content: center;
+    font-weight: bolder;
+    margin-left:25px;
+}
+.mat-cell {
+    text-align: center;
+    justify-content:center;
+}
+.mat-row:nth-child(odd){
+    background-color:#eeeeee;
+    text-align: center;
+}
+.mat-row.ng-star-inserted:nth-child(even) {
+    background-color: white;
+    text-align: center;
+}
+button.mat-sort-header-button {
+    margin-left: 5vw;
+}
+
+.msgspan{
+    color: #00796B;
+    font-weight: bold;
+    font-size: medium;
+}
+
+.divspan{
+    margin-top: 15px;
+    margin-right: 30px;
+    float: right;
+    
+}
+
+.customdialog {
+    mat-dialog-container {
+    background-color: white;
+    color: mat-color($my-app-primary);
+    font-weight: bold;
+    }
+}
+
+#deleteNo, #deleteYes {
+    background-color: mat-color($my-app-primary);
+    color: white;
+}

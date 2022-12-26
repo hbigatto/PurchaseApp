@@ -1,0 +1,160 @@
+<mat-card>
+    <mat-card-header layout="row">
+        <img class="center" src="assets/images/hugomarket.png"/>
+        <mat-card-title>
+            
+        </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <form [formGroup]="poviewerForm" novalidate>
+            <div layout="row">
+                <mat-form-field flex>
+                    <mat-select placeholder="Choose vendor" formControlName="vendorid">
+                        <mat-option *ngFor="let vendor of vendors$ | async" [value]="vendor">
+                            {{vendor.name}}
+                        </mat-option>
+                    </mat-select>
+
+                </mat-form-field>
+
+            </div>
+
+            <div *ngIf="pickedVendor" layout="row">
+                <mat-form-field flex>
+                    <mat-select placeholder="Choose PO" formControlName="poid" (change)="onPickPurchaseOrder()">
+                        <mat-option *ngFor="let po of purchaseOrders$ | async" [value]="po">
+                            {{po.id}} - {{po.podate | date: "short"}}
+                        </mat-option>
+
+                    </mat-select>
+                </mat-form-field>
+
+            </div>
+
+            <div *ngIf="pickedPurchaseOrder" class="row">
+                <table>
+                  <tr>
+                    <th
+                      colspan="3"
+                      class="pad-xs text-center md-subhead"
+                      style="font-weight: bold; padding: 2vh"
+                    >
+                      Purchase Order: {{ selectedPurchaseOrder.id }}<br>
+                      Created on:{{ selectedPurchaseOrder.podate | date: "short" : "GMT-5" }}
+                  
+                      <!--Maybe change here later, lets see how it goes-->
+                    </th>
+
+                  </tr>
+                 
+                  <tr style="font-weight: bold; background-color: #eeeeee">
+                    <td
+                      style="
+                        text-align: center;
+                        width: 20vw;
+                        padding-top: 2vh;
+                        padding-bottom: 2vh;
+                      "
+                    >
+                      Name
+                    </td>
+                    <td
+                      style="
+                        text-align: center;
+                        width: 60vw;
+                        padding-top: 2vh;
+                        padding-bottom: 2vh;
+                      "
+                    >
+                      Qty
+                    </td>
+                    <td
+                      style="
+                        text-align: center;
+                        width: 20vw;
+                        padding-top: 2vh;
+                        padding-bottom: 2vh;
+                      "
+                    >
+                      Cost
+                    </td>
+                    <td
+                      style="
+                        text-align: center;
+                        width: 20vw;
+                        padding-top: 2vh;
+                        padding-bottom: 2vh;
+                      "
+                    >
+                      Extended
+                    </td>
+
+                  </tr>
+
+                  <tr *ngFor="let item of selectedPurchaseOrder.items">
+                    <td class="text-right" style="padding-top: 1vh; padding-bottom: 1vh">
+                      {{ item.productName }}
+                    </td>
+
+                    <td class="text-center" style="padding-top: 1vh; padding-bottom: 1vh">
+                        {{ item.qty }}
+                    </td>
+
+                    <td style="padding-top: 1vh; padding-bottom: 1vh; text-align: right">
+                    {{ item.price | currency: "USD":"symbol":"1.2-2" }}
+                    </td>
+
+                    <td style="padding-top: 1vh; padding-bottom: 1vh; text-align: right">
+                    {{ (item.price * item.qty) | currency: "USD":"symbol":"1.2-2" }}
+                    </td>
+                    
+                    </tr>
+
+                    <tr>
+                        <td colspan="3" style="text-align: right">Sub:</td>
+                        <td
+                          class="my-primary-text"
+                          style="font-weight: 750; text-align: right"
+                        >
+                          {{ sub | currency: "USD":"symbol":"1.2-2" }}
+                        </td>
+                      </tr>
+                      <tr>  
+                        <td colspan="3" style="text-align: right">Tax:</td>
+                        <td
+                          class="my-primary-text"
+                          style="font-weight: 750; text-align: right"
+                        >
+                          {{ tax | currency: "USD":"symbol":"1.2-2" }}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td colspan="3" style="text-align: right">Total:</td>
+                        <td
+                          class="my-primary-text"
+                          style="font-weight: 750; text-align: right"
+                          bgcolor="#FFFF00"
+                        >
+                          {{ total | currency: "USD":"symbol":"1.2-2" }}
+                        </td>
+                     </tr>
+
+                </table>
+      
+              </div>
+
+              <div style="text-align: center" *ngIf="showPdf">
+                <button mat-raised-button type="submit" (click)="viewPdf()">
+                  View PDF
+                </button>
+              </div>
+
+
+
+
+    </form>
+    </mat-card-content>
+</mat-card>
+<div class="divspan">
+    <span class="msgspan">{{ msg }}</span>
+</div>
