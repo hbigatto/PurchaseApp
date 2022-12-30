@@ -3,6 +3,8 @@
  
  Stack: Java, TypeScript
  
+ Framework: Angular
+ 
  This application works with Spring, openjdk-18.0.2.1
  
  How to run it:
