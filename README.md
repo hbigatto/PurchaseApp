@@ -1,5 +1,5 @@
 # PurchaseApp
- Application that simulates on-line purchase of goods
+ Application that simulates on-line purchase of goods and generates a PDF file of your purchase
  
  Stack: Java, TypeScript
  
